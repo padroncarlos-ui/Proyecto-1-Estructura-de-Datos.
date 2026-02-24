@@ -4,62 +4,23 @@
  */
 package Proyecto;
 
-import javax.swing.JFileChooser;
-
 /**
  *
  * @author karlg
  */
 public class Interfaz extends javax.swing.JFrame {
-    private Grafo grafoActual = new Grafo();
-    private AnalizadorBiologico analizador = new AnalizadorBiologico();
-    private GestorDeArchivos gestor = new GestorDeArchivos();
-    
+
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(Interfaz.class.getName());
 
     /**
      * Creates new form Interfaz
      */
     public Interfaz() {
-        super("Analizador de Grafos Biológicos");
+        super("Analizador Biólogico de Proteínas");
         initComponents();
         setLocationRelativeTo(null);
         setVisible(true);
     }
-    
-    public void guardarArchivo() {
-        JFileChooser chooser = new JFileChooser();
-        if (chooser.showSaveDialog(this) == JFileChooser.APPROVE_OPTION) {
-            String path = chooser.getSelectedFile().getPath();
-            gestor.guardarArchivo(path, this.grafoActual);
-       }
-    }
-    
-    
-    
-    
-    
-         public void cargarArchivo() {
-        JFileChooser chooser = new JFileChooser();
-        if (chooser.showOpenDialog(this) == JFileChooser.APPROVE_OPTION) {
-            String path = chooser.getSelectedFile().getPath();
-            this.grafoActual = gestor.cargarArchivo(path);
-        }
-    }
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
     
     /**
      * This method is called from within the constructor to initialize the form.
@@ -71,28 +32,263 @@ public class Interfaz extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        PanelGrafo = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        ConsolaTxt = new javax.swing.JTextArea();
+        jPanel3 = new javax.swing.JPanel();
+        BtnGuardar = new javax.swing.JButton();
+        BtnCargar = new javax.swing.JButton();
+        jLabel2 = new javax.swing.JLabel();
+        jPanel5 = new javax.swing.JPanel();
+        BtnHubs = new javax.swing.JButton();
+        BtnEncontrarComp = new javax.swing.JButton();
+        BtnRutaCorta = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
+        jPanel9 = new javax.swing.JPanel();
+        BtnEliminarProte = new javax.swing.JButton();
+        BtnAddProte = new javax.swing.JButton();
+        BtnAddIntera = new javax.swing.JButton();
+        jLabel4 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
 
-        jPanel1.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel1.setBackground(new java.awt.Color(51, 51, 51));
         jPanel1.setForeground(new java.awt.Color(255, 255, 255));
         jPanel1.setPreferredSize(new java.awt.Dimension(800, 600));
         jPanel1.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        PanelGrafo.setBackground(new java.awt.Color(204, 204, 204));
+
+        javax.swing.GroupLayout PanelGrafoLayout = new javax.swing.GroupLayout(PanelGrafo);
+        PanelGrafo.setLayout(PanelGrafoLayout);
+        PanelGrafoLayout.setHorizontalGroup(
+            PanelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 690, Short.MAX_VALUE)
+        );
+        PanelGrafoLayout.setVerticalGroup(
+            PanelGrafoLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 620, Short.MAX_VALUE)
+        );
+
+        jPanel1.add(PanelGrafo, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 20, 690, 620));
+
+        ConsolaTxt.setBackground(new java.awt.Color(204, 204, 204));
+        ConsolaTxt.setColumns(20);
+        ConsolaTxt.setForeground(new java.awt.Color(0, 0, 0));
+        ConsolaTxt.setRows(5);
+        ConsolaTxt.setText("Bienvenido al Analizador Biológico de Proteinas. \nPor favor, añada un archivo de conexiones para empezar.\n");
+        jScrollPane1.setViewportView(ConsolaTxt);
+
+        jPanel1.add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(210, 650, 690, 100));
+
+        jPanel3.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel3.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel3.setPreferredSize(new java.awt.Dimension(1505, 115));
+        jPanel3.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnGuardar.setBackground(new java.awt.Color(102, 102, 102));
+        BtnGuardar.setText("Guardar Archivo");
+        BtnGuardar.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        BtnGuardar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGuardarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BtnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 130, 70));
+
+        BtnCargar.setBackground(new java.awt.Color(102, 102, 102));
+        BtnCargar.setText("Cargar un Archivo");
+        BtnCargar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        BtnCargar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCargarActionPerformed(evt);
+            }
+        });
+        jPanel3.add(BtnCargar, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 70));
+
+        jPanel1.add(jPanel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 20, 170, 170));
+
+        jLabel2.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Detección de Complejos");
+        jPanel1.add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 480, -1, -1));
+
+        jPanel5.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel5.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel5.setPreferredSize(new java.awt.Dimension(1505, 115));
+        jPanel5.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnHubs.setBackground(new java.awt.Color(102, 102, 102));
+        BtnHubs.setText("Identificar Hubs");
+        BtnHubs.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        BtnHubs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHubsActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnHubs, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 130, 70));
+
+        BtnEncontrarComp.setBackground(new java.awt.Color(102, 102, 102));
+        BtnEncontrarComp.setText("<html><center>Encontrar Componentes<br>Proteicos</center></html>");
+        BtnEncontrarComp.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        BtnEncontrarComp.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        BtnEncontrarComp.setMargin(new java.awt.Insets(0, 0, 0, 0));
+        BtnEncontrarComp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEncontrarCompActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnEncontrarComp, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 70));
+
+        BtnRutaCorta.setBackground(new java.awt.Color(102, 102, 102));
+        BtnRutaCorta.setText("Ruta Más Corta");
+        BtnRutaCorta.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 3, true));
+        BtnRutaCorta.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRutaCortaActionPerformed(evt);
+            }
+        });
+        jPanel5.add(BtnRutaCorta, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 130, 70));
+
+        jPanel1.add(jPanel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 500, 170, 250));
+
+        jLabel3.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel3.setText("Archivo");
+        jPanel1.add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 0, -1, -1));
+
+        jPanel9.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel9.setForeground(new java.awt.Color(102, 102, 102));
+        jPanel9.setPreferredSize(new java.awt.Dimension(1505, 115));
+        jPanel9.setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
+
+        BtnEliminarProte.setBackground(new java.awt.Color(102, 102, 102));
+        BtnEliminarProte.setText("Eliminar Proteínas");
+        BtnEliminarProte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        BtnEliminarProte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEliminarProteActionPerformed(evt);
+            }
+        });
+        jPanel9.add(BtnEliminarProte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 170, 130, 70));
+
+        BtnAddProte.setBackground(new java.awt.Color(102, 102, 102));
+        BtnAddProte.setText("Añadir Proteína");
+        BtnAddProte.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        BtnAddProte.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddProteActionPerformed(evt);
+            }
+        });
+        jPanel9.add(BtnAddProte, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 90, 130, 70));
+
+        BtnAddIntera.setBackground(new java.awt.Color(102, 102, 102));
+        BtnAddIntera.setText("Añadir Interacción");
+        BtnAddIntera.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
+        BtnAddIntera.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAddInteraActionPerformed(evt);
+            }
+        });
+        jPanel9.add(BtnAddIntera, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 10, 130, 70));
+
+        jPanel1.add(jPanel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 220, 170, 250));
+
+        jLabel4.setFont(new java.awt.Font("Segoe UI", 1, 16)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel4.setText("Modificar El Grafo");
+        jPanel1.add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(20, 200, -1, -1));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 807, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 913, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 611, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 763, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    /**
+     * Calcula cual es el nodo o la proteína que tiene el mayor número de conexiones
+     * para así poder identificar que tan escencial para el grafo.
+     * @param evt 
+     */
+    private void BtnHubsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHubsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnHubsActionPerformed
+ 
+    /**
+     * Botón encargado de usar JFileChooser y seleccionar el archivo necesario 
+     * que contiene las conexiones entre proteínas cuando es pulsado.
+     * @param evt 
+     */
+    private void BtnCargarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCargarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnCargarActionPerformed
+
+    /**
+     * Usa BFS para poder encontrar cuales con los componentes del grafo los cuales
+     * tienen conexiones entre sí para identificar diferentes grupos de proteínas.
+     * @param evt 
+     */
+    private void BtnEncontrarCompActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEncontrarCompActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEncontrarCompActionPerformed
+
+    /**
+     * <p>Modifica el Grafo, elimina o "apaga" una proteína junto con sus interacciones
+     * con otras proteínas</p>
+     * También modifica el archivo de texto
+     * @param evt 
+     */
+    private void BtnEliminarProteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEliminarProteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnEliminarProteActionPerformed
+
+    /**
+     * <p>Modifica el Grafo, comunicandose con la lógica de añadir proteína
+     * para que el usuario pueda colocar una nueva proteína en el grafo, indicando
+     * sus conexiones con otras proteínas</p>
+     * También modifica el archivo de texto
+     * @param evt 
+     */
+    private void BtnAddProteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddProteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnAddProteActionPerformed
+
+    /**
+     * Utiliza el algoritmo de Dijkstra para poder identificar la cadena de 
+     * interacciones más cortas de una proteína A a una proteína B.
+     * @param evt 
+     */
+    private void BtnRutaCortaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRutaCortaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnRutaCortaActionPerformed
+
+    /**
+     * <p>Guarda y actualiza las modificaciones hechas al grafo</p>
+     * Estas modificaciones también actualizan el archivo de texto que se usó
+     * para poder acceder a el después
+     * @param evt 
+     */
+    private void BtnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGuardarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnGuardarActionPerformed
+
+    /**
+     * <p>Modifica el Grafo, comunicandose con la lógica de añadir interacción
+     * para añadir visualmente una o varias nuevas conexiones entre proteínas ya existentes</p>
+     * También modifica el archivo de texto
+     * @param evt 
+     */
+    private void BtnAddInteraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAddInteraActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnAddInteraActionPerformed
 
     /**
      * @param args the command line arguments
@@ -120,6 +316,23 @@ public class Interfaz extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton BtnAddIntera;
+    private javax.swing.JButton BtnAddProte;
+    private javax.swing.JButton BtnCargar;
+    private javax.swing.JButton BtnEliminarProte;
+    private javax.swing.JButton BtnEncontrarComp;
+    private javax.swing.JButton BtnGuardar;
+    private javax.swing.JButton BtnHubs;
+    private javax.swing.JButton BtnRutaCorta;
+    private javax.swing.JTextArea ConsolaTxt;
+    private javax.swing.JPanel PanelGrafo;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }
